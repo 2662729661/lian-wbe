@@ -1,5 +1,6 @@
 package com.aws.codestar.projecttemplates.controller;
 
+import com.aws.codestar.filter.jaxbXml.PersonnelList;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -15,6 +16,10 @@ import com.aws.codestar.projecttemplates.configuration.ApiService;
 import com.aws.codestar.projecttemplates.model.Account;
 import com.aws.codestar.projecttemplates.model.Emotion;
 import com.aws.codestar.projecttemplates.model.Story;
+import com.aws.codestar.projecttemplates.pojo.Personnel;
+import com.aws.codestar.projecttemplates.suppot.BeanToXml;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -23,6 +28,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
@@ -43,6 +51,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.w3c.dom.Document;
 
 /**
  * Basic Spring MVC controller that handles all GET requests.
@@ -382,13 +391,10 @@ public class HelloWorldController {
 		}
 		System.out.println("story:" + emotion.getStory());
 		System.out.println("who:" + emotion.getWho());
-		
+
 		//判断是否收藏
-		
-		
-		
-		apiService.bookmark(emotion,httpSession);
-		
+		apiService.bookmark(emotion, httpSession);
+
 		return emotion.toString();
 	}
 
@@ -678,4 +684,23 @@ public class HelloWorldController {
 		model.addObject("xmlSource", source);
 		return model;
 	}
+
+	/**
+	 * obj转xml测试
+	 */
+//	@RequestMapping(value = "/qqss")
+//	public void get(HttpServletResponse response) throws Exception {
+//		Personnel qQss = apiService.getTest();
+//
+//		PersonnelList personnel = new PersonnelList();
+//		personnel.setPersonnels(qQss);
+//		Document beanToXml = BeanToXml.beanToXml(personnel, PersonnelList.class);
+//
+//		//写入到xml文件中
+////		String xmlPath = "C:/Users/lian/Desktop/a.xml";
+////		BufferedWriter bfw = new BufferedWriter(new FileWriter(new File(xmlPath)));
+////		bfw.write(beanToXml);
+////		bfw.close();
+//		TransformerFactory.newInstance().newTransformer().transform(new DOMSource(beanToXml), new StreamResult(response.getOutputStream()));
+//	}
 }

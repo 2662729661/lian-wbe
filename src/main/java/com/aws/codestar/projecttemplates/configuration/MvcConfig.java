@@ -49,7 +49,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 		xsltResolover.setSourceKey("xmlSource");
 
 		xsltResolover.setViewClass(XsltView.class);
-		xsltResolover.setViewNames(new String[]{"XSLTView", "index", "login", "register", "memberCenter","homepage","qQLogin"});
+		xsltResolover.setViewNames(new String[]{"XSLTView", "index", "login", "register", "memberCenter","homepage","qQLogin","header"});
 		xsltResolover.setPrefix("/WEB-INF/xsl/");
 		xsltResolover.setSuffix(".xsl");
 

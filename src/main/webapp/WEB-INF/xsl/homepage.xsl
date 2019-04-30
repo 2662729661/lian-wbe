@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:import href="component/header.xsl" />
 	<xsl:output version="1.0" indent="yes" encoding="UTF-8" method="html"/>
 	
 	<xsl:template match="/document">  
@@ -15,6 +16,7 @@
 			<script src="resources/js/friend.js"></script>
 			<link rel="stylesheet" href="resources/css/homepage.css" type="text/css"/>
 			<body>
+				<xsl:apply-templates select="." mode="header" />
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12 image-section">

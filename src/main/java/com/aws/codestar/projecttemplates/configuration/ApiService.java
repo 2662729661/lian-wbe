@@ -33,7 +33,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -229,6 +231,23 @@ public class ApiService {
 		//创建根节点
 		Element documentElement = doc.createElement("document");
 		doc.appendChild(documentElement);
+
+		//將目前已登入的 user 資訊(from httpSession)寫進 document.attribute
+		if (httpSession.getAttribute("me") != null) {
+			documentElement.setAttribute("me", httpSession.getAttribute("me").toString());
+		}
+		if (httpSession.getAttribute("id") != null) {
+			documentElement.setAttribute("id", httpSession.getAttribute("id").toString());
+		}
+		if (httpSession.getAttribute("personnelHref") != null) {
+			documentElement.setAttribute("personnelHref", httpSession.getAttribute("personnelHref").toString());
+		}
+		if (httpSession.getAttribute("thirdParty") != null) {
+			documentElement.setAttribute("thirdParty", httpSession.getAttribute("thirdParty").toString());
+		}
+		if (httpSession.getAttribute("nickname") != null) {
+			documentElement.setAttribute("nickname", httpSession.getAttribute("nickname").toString());
+		}
 
 		String string = getPersonnelsString(id);
 
@@ -914,4 +933,20 @@ public class ApiService {
 		closeableHttpResponse.close();
 		closeableHttpClient.close();
 	}
+
+	/**
+	 * 测试方法
+	 *
+	 * @param id 参数
+	 * @return
+	 */
+//	public Personnel getTest() throws Exception {
+//		
+//		ResponseEntity<Personnel> response = restTemplate.getForEntity(resourceUrl + "personnels/search/findOneById?id=3", Personnel.class);
+//
+//		Personnel body = response.getBody();
+//		
+//		return body;
+//	}
+
 }

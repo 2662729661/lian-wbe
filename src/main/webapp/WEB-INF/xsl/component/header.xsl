@@ -1,7 +1,7 @@
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
-    <xsl:template match="/" mode="header">      
+	
+    <xsl:template match="/document" mode="header">      
         <HEADER>
 				<NAV class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 					<DIV class="d-xl-none">
