@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.redan</groupId>
-	<artifactId>redan-web-test-2</artifactId>
+	<artifactId>redan-web-test-233</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
